@@ -29,7 +29,11 @@
 
 .account-link {
   white-space: nowrap;
-  font-size: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #000;
+
 }
 
 .welcome-message {
