@@ -8,7 +8,31 @@
 const express = require("express")
 const env = require("dotenv").config()
 const app = express()
-const static = require("./routes/static")
+const static = require("./routes/static");
+const expressEjsLayouts = require("express-ejs-layouts");
+
+/* ***********************
+ * View Engine and Templates
+ *************************/
+app.set('view engine', 'ejs');
+app.set('views', './views');
+app.use(expressEjsLayouts)
+app.set("layout", "./layouts/layout")
+
+
+/* ***********************
+ * Routes
+ *************************/
+//app.get("/", (req, res)=>{
+//  res.send("Welcome home!")
+//})
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
+
+//app.use(static)
 
 /* ***********************
  * Routes
