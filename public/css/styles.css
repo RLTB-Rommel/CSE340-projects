@@ -163,7 +163,7 @@ body {
 
 /* Upgrades section */
 .upgrades-section {
-  order: 1;
+  order: -1;
   width: 55%;
 }
 
@@ -214,7 +214,7 @@ body {
 
 /* Reviews section */
 .reviews-section {
-  order: -1;
+  order: 1;
   width: 45%;
 }
 
@@ -321,5 +321,15 @@ footer {
     margin-top: 0.3rem;
     display: inline-block;
     margin-left: 2rem;
+  }
+
+    .upgrades-section {
+    order: 1;
+    width: 100%;
+  }
+
+    .reviews-section {
+    order: -1;
+    width: 100%;
   }
 }
