@@ -242,9 +242,12 @@ footer {
     width: 100%;
   }
 
-  nav ul {
-    flex-direction: column;
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
   }
+}
 
   .hero {
     flex-direction: row;
