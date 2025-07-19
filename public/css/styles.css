@@ -271,14 +271,14 @@ footer {
   }
 
     .nav-list li a {
-    font-size: 0.9rem; /* or smaller if needed */
-    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 0.3rem;
   }
 
   .nav-list {
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.1rem;
   }
   
   .hero {
