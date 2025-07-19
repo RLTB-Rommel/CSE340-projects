@@ -282,14 +282,12 @@ footer {
 
     nav ul {
     list-style: none;
-    padding: 1.5rem;
-    margin: 0 auto;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    max-width: 100%;
-    box-sizing: border-box;
+    gap: 0.75rem;
   }
 
     nav ul li {
