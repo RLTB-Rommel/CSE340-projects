@@ -74,6 +74,8 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .nav-list li a {
@@ -86,7 +88,7 @@ body {
 }
 
 .nav-list li a:hover {
-  background-color: #333; /* optional hover effect */
+  background-color: #333;
   border-radius: 4px;
 }
 
@@ -114,7 +116,7 @@ body {
   padding: 2rem 1.5rem;
   border-radius: 8px;
   color: #161616;
-  width:275px;
+  width: 275px;
   transform: translateY(-50%);
   z-index: 2;
 }
@@ -142,7 +144,7 @@ body {
   text-decoration: none;
   font-weight: bold;
   transform: scaleX(1.8);
-  transform-origin:center;
+  transform-origin: center;
 }
 
 /* Bottom layout section */
@@ -243,10 +245,9 @@ footer {
   }
 
   .nav-list {
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
-  }
   }
 
   .hero {
@@ -276,14 +277,14 @@ footer {
 
   .upgrades-section,
   .reviews-section {
-  width: 100% !important;
+    width: 100% !important;
   }
 
- .cta-button {
-  background-color: hsl(352, 94%, 45%);
-  color: white;
-  font-size: 0.95rem;
-  padding: 0.6rem 1rem;
-  font-weight: bold;
-}
+  .cta-button {
+    background-color: hsl(352, 94%, 45%);
+    color: white;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    font-weight: bold;
+  }
 }
