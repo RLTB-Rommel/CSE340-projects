@@ -63,7 +63,7 @@ body {
 /* Navigation */
 
 .main-nav {
-  background-color: #b4001a;
+  background-color: #aa001a;
   padding: 0.5rem 0;
 }
 
@@ -83,6 +83,14 @@ body {
   padding: 0.5rem 1rem;
   display: block;
   transition: background-color 0.3s;
+  font-size: 1.2rem;
+
+}
+
+.nav-list li a:focus {
+  outline: 2px dashed #fff;
+  background-color: #000;
+  color: #fff;
 }
 
 .nav-list li a:hover {
