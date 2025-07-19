@@ -276,8 +276,11 @@ footer {
   width: 100% !important;
   }
 
-  .cta-button {
-    font-size: 0.95rem;
-    padding: 0.6rem 1rem;
-  }
+ .cta-button {
+  background-color: hsl(352, 94%, 45%);
+  color: white;
+  font-size: 0.95rem;
+  padding: 0.6rem 1rem;
+  font-weight: bold;
+}
 }
