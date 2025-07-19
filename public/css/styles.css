@@ -252,28 +252,30 @@ footer {
   }
 
   .hero {
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    text-align: left;
-    gap: 1rem;
+    justify-content: center;
+    text-align: center;
+    position: relative;
   }
 
   .hero-text {
-    width: 100%;
-    max-width: 100%;
-    position: static;
-    transform: none;
-    padding: 1rem;
-    background-color: transparent;
+    position: absolute;
+    top: 65%;
+    left: 10%;
+    transform: translateY(-50%);
+    background-color: #fff700d9;
+    padding: 1.5rem 1rem;
+    width: 250px;
+    max-width: 90%;
+    z-index: 2;
   }
 
   .hero-car {
     width: 100%;
     max-width: 300px;
     height: auto;
-    margin: 0 auto;
+    z-index: 1;
   }
 
   .upgrades-section,
