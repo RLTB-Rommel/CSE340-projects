@@ -77,14 +77,11 @@ body {
 }
 
 .nav-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  flex-wrap: wrap; /* 🔁 allow items to wrap */
-  justify-content: center;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: center;
-  gap: 0.5rem; /* optional for spacing */
+  gap: 2rem; /* spacing between items */
 }
 
 .nav-list li a {
