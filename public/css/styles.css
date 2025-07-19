@@ -81,8 +81,10 @@ body {
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: space-around;
+  flex-wrap: wrap; /* 🔁 allow items to wrap */
+  justify-content: center;
   align-items: center;
+  gap: 0.5rem; /* optional for spacing */
 }
 
 .nav-list li a {
