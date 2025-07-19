@@ -85,9 +85,15 @@ body {
 }
 
 .nav-list li a {
-  font-size: 1.4rem; /* larger font for desktop */
-  padding: 1rem 1.5rem;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.3rem 0.4rem;
+  display: block;
+  transition: background-color 0.3s;
 }
+
 .nav-list li a:hover {
   background-color: #333;
   border-radius: 4px;
