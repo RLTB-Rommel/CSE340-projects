@@ -8,9 +8,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: nowrap;
   padding: 1rem 0;
-  gap: 1rem;
 }
 
 .site-header .header-container h1 {
@@ -21,19 +19,12 @@
   letter-spacing: 1px;
 }
 
-.logo h1 {
-  font-size: 3rem;   /* Reduce from 4rem if needed */
-  margin: 0;
-  white-space: nowrap;
-}
-
 .account-link {
-  white-space: nowrap;
-  font-size: 1.5rem;
+  font-size: 0.95rem;
   font-weight: bold;
+  color: #333;
   text-transform: uppercase;
-  color: #000;
-
+  margin: 0;
 }
 
 .welcome-message {
@@ -48,8 +39,6 @@
   font-weight: 800;
   color: #010a11;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-  margin: 0;
-  text-align: left;
 }
 
 body {
@@ -61,6 +50,7 @@ body {
   font-size: 16px;
 }
 
+/* Wrapper */
 .wrapper {
   max-width: 1200px;
   margin: 2rem auto;
@@ -71,42 +61,33 @@ body {
 }
 
 /* Navigation */
+
 .main-nav {
   background-color: #f50820;
   padding: 0.5rem 0;
 }
 
 .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-wrap: nowrap;
   justify-content: space-around;
   align-items: center;
-  gap: 2rem; /* spacing between items */
 }
 
 .nav-list li a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1rem;
-  padding: 0.3rem 0.4rem;
+  padding: 0.5rem 1rem;
   display: block;
   transition: background-color 0.3s;
 }
 
 .nav-list li a:hover {
-  background-color: #333;
+  background-color: #333; /* optional hover effect */
   border-radius: 4px;
-}
-
-nav ul {
-  display: flex;
-  flex-wrap: wrap; /* allows wrapping on small screens */
-  justify-content: center;
-  gap: 0.5rem; /* spacing between items */
-  padding: 0;
-  margin: 0;
-  list-style: none;
 }
 
 /* Hero section */
@@ -133,7 +114,7 @@ nav ul {
   padding: 2rem 1.5rem;
   border-radius: 8px;
   color: #161616;
-  width: 275px;
+  width:275px;
   transform: translateY(-50%);
   z-index: 2;
 }
@@ -161,19 +142,19 @@ nav ul {
   text-decoration: none;
   font-weight: bold;
   transform: scaleX(1.8);
-  transform-origin: center;
+  transform-origin:center;
 }
 
+/* Bottom layout section */
 .bottom-section {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
+  margin-top: 2rem;
 }
 
 /* Upgrades section */
 .upgrades-section {
-  order: -1;
   width: 55%;
 }
 
@@ -224,7 +205,6 @@ nav ul {
 
 /* Reviews section */
 .reviews-section {
-  order: 1;
   width: 45%;
 }
 
@@ -253,114 +233,51 @@ footer {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .site-header .header-container h1 {
-    font-size: 2rem;
-  }
-
-  .wrapper {
-  width: 100%;
-  max-width: 100%;
-  margin: 0;
-  border-left: none;
-  border-right: none;
-  border-radius: 0;
-}
-
-  .welcome-message {
-  margin: 1rem 0;
-  }
-
-  .welcome-message h1 {
-  font-size: 1.8rem;
-  text-align: left;
-  word-spacing: 2px;
-  }
-
-  .account-link {
-    font-size: 0.9rem;
-  }
-
-    .nav-list li a {
-    font-size: 0.9rem;
-    padding: 0.5rem 0.3rem;
-  }
-
-  .nav-list {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.1rem;
-  }
-  
-  .hero {
-    position: relative;
-    flex-direction: column;
-    align-items: center;
-    text-align: left;
-  }
-
-  .hero-text {
-    background-color: rgba(255, 255, 0, 0.85);
-    padding: 0.5rem;
-    border-radius: 8px;
-    width: 48%;
-    font-size: 0.8rem;
-    position: absolute;
-    top: 55%;
-    left: 6%;
-    transform: translateY(-50%);
-    text-align: left;
-  }
-
-  .hero-text h2 {
-    font-size: 1rem;
-    margin-bottom: 0.4rem;
-  }
-
-  .hero-text ul {
-    margin: 0;
-    padding-left: 1.1rem;
-  }
-
-  .hero-text li {
-    margin-bottom: 0.3rem;
-  }
-
-  .hero-car {
-    width: 100%;
-    max-width: 400px;
-    height: auto;
-    z-index: 1;
-  }
-
   .bottom-section {
     flex-direction: column;
   }
-  
+
   .upgrades-section,
   .reviews-section {
     width: 100%;
   }
 
-  .upgrade-grid {
-    grid-template-columns: 1fr 1fr;
+  nav ul {
+    flex-direction: column;
+  }
+
+  .hero {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    gap: 1rem;
+  }
+
+  .hero-text {
+    width: 100%;
+    max-width: 100%;
+    position: static;
+    transform: none;
+    padding: 1rem;
+    background-color: transparent;
+  }
+
+  .hero-car {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .upgrades-section,
+  .reviews-section {
+  width: 100% !important;
   }
 
   .cta-button {
-    font-size: 0.7rem;
-    padding: 0.25rem 0.6rem;
-    border-radius: 4px;
-    margin-top: 0.3rem;
-    display: inline-block;
-    margin-left: 2rem;
-  }
-
-    .upgrades-section {
-    order: 1;
-    width: 100%;
-  }
-
-    .reviews-section {
-    order: -1;
-    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
   }
 }
