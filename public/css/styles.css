@@ -22,7 +22,7 @@
 .account-link {
   font-size: 0.95rem;
   font-weight: bold;
-  color: #333;
+  color: #111;
   text-transform: uppercase;
   margin: 0;
 }
@@ -37,7 +37,7 @@
   letter-spacing: 1px;
   word-spacing: 4px;
   font-weight: 800;
-  color: #010a11;
+  color: #000;
   text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
 }
 
@@ -173,7 +173,7 @@ body {
 }
 
 .upgrade-item .card {
-  background-color: #f4f81756;
+  background-color: #f4f817;
   padding: 1rem;
   border-radius: 10px;
   width: 100%;
@@ -198,7 +198,7 @@ body {
 
 .upgrades-section h3,
 .reviews-section h3 {
-  color: #cc0000;
+  color: #990000;
   font-weight: bold;
   font-size: 2rem;
 }
