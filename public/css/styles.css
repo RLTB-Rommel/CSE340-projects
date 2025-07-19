@@ -244,8 +244,8 @@ footer {
   }
 
   .site-header .header-container h1 {
-  font-size: 1rem;
-  font-weight: 100;
+  font-size: 1.5rem;
+  font-weight: 600;
   margin: 0;
   color: #111;
   letter-spacing: 1px;
@@ -266,10 +266,10 @@ footer {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.5rem;
   display: block;
   transition: background-color 0.3s;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   }
 
   .hero {
