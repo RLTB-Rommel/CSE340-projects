@@ -241,6 +241,14 @@ footer {
     flex-direction: column;
   }
 
+  .site-header .header-container h1 {
+  font-size: 1rem;
+  font-weight: 100;
+  margin: 0;
+  color: #111;
+  letter-spacing: 1px;
+}
+
   .upgrades-section,
   .reviews-section {
     width: 100%;
