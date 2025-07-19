@@ -89,12 +89,12 @@ body {
 
 .nav-list li a:focus {
   outline: 2px dashed #fff;
-  background-color: #000;
+  background-color: #f4f1f1;
   color: #fff;
 }
 
 .nav-list li a:hover {
-  background-color: #000;
+  background-color: #fffbfb;
   border-radius: 4px;
 }
 
