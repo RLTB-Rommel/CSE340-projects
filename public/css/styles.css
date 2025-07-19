@@ -270,15 +270,16 @@ footer {
 
 .hero-text {
   position: absolute;
-  top: 65%;
-  left: 60%;
+  top: 66%;
+  left: 58%;
   transform: translateY(-50%);
   background-color: #fff700d9;
-  padding: 0.25rem 0.5rem;
-  width: 140px;
-  font-size: 0.7rem;
-  border-radius: 5px;
+  padding: 0.5rem 0.75rem;
+  width: 150px;
+  font-size: 0.8rem;
+  border-radius: 6px;
   z-index: 2;
+  text-align: center;
 }
 
   .hero-car {
