@@ -114,10 +114,11 @@ body {
   top: 58%;
   left: 10%;
   background-color: #fff700d9;
-  padding: 1rem 1rem;
+  padding: 2rem 1.5rem;
   border-radius: 8px;
   color: #161616;
-  width: 220px;
+  width: 260px;
+  min-height: 140px;
   font-size: 0.9rem;
   transform: translateY(-50%);
   z-index: 2;
