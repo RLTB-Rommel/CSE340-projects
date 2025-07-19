@@ -260,6 +260,18 @@ footer {
   .account-link {
     font-size: 0.9rem;
   }
+
+    .nav-list li a {
+    font-size: 0.9rem; /* or smaller if needed */
+    padding: 0.5rem 0.75rem;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
   .hero {
     position: relative;
     flex-direction: column;
