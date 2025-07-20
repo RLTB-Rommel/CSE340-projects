@@ -2,7 +2,6 @@
  * This server.js file is the primary file of the 
  * application. It is used to control the project.
  *******************************************/
-
 /* ***********************
  * Require Statements
  *************************/
@@ -10,7 +9,6 @@ const express = require("express")
 const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static");
-const inventoryRoute = require("./routes/inventoryRoute"); // Added: route for inventory operations
 const expressEjsLayouts = require("express-ejs-layouts");
 
 /* ***********************
@@ -21,24 +19,25 @@ app.set('views', './views');
 app.use(expressEjsLayouts)
 app.set("layout", "./layouts/layout")
 
-/* ***********************
- * Middleware
- * Enables serving static files and parsing form data
- *************************/
-app.use(express.static("public")); // Serves static assets like images, CSS, JS
-app.use(express.urlencoded({ extended: true })); // Parses form data
-app.use(express.json()); // Parses JSON payloads
 
 /* ***********************
  * Routes
  *************************/
-// Default route to render homepage using layout
+//app.get("/", (req, res)=>{
+//  res.send("Welcome home!")
+//})
+
 app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.use(static); // Route for static controller logic
-app.use("/inventory", inventoryRoute); // Added: route for handling inventory-related paths (e.g., /inventory/type/Custom)
+
+//app.use(static)
+
+/* ***********************
+ * Routes
+ *************************/
+app.use(static)
 
 /* ***********************
  * Local Server Information

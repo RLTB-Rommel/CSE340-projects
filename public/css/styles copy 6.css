@@ -237,24 +237,6 @@ footer {
   margin-top: 2rem;
 }
 
-.vehicle-detail {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  margin-top: 1rem;
-}
-
-.vehicle-image {
-  flex: 1 1 300px;
-  max-width: 100%;
-  border-radius: 8px;
-}
-
-.vehicle-info {
-  flex: 1 1 300px;
-  font-size: 1.1rem;
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .bottom-section {
@@ -336,9 +318,5 @@ footer {
   font-weight: bold;
   transform: scaleX(1.2);
   transform-origin: center;
-  }
-
-    .vehicle-detail {
-    flex-direction: column;
   }
 }
