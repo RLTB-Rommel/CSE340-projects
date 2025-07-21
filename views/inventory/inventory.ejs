@@ -1,0 +1,21 @@
+<main>
+  <h1><%= classification_name %> Vehicles</h1>
+
+  <% if (inventory.length > 0) { %>
+    <section class="vehicle-grid">
+      <% inventory.forEach(vehicle => { %>
+        <div class="vehicle-card">
+          <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-thumb">
+          <h2>
+            <a href="/inventory/detail/<%= vehicle.inv_id %>">
+              <%= vehicle.inv_make %> <%= vehicle.inv_model %>
+            </a>
+          </h2>
+          <p class="price">$<%= Number(vehicle.inv_price).toLocaleString() %></p>
+        </div>
+      <% }) %>
+    </section>
+  <% } else { %>
+    <p>No vehicles found in this classification.</p>
+  <% } %>
+</main>

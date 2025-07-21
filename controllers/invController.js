@@ -5,11 +5,26 @@ const utilities = require("../utilities");
 async function buildByClassification(req, res, next) {
   try {
     const classification = req.params.classification;
+    const classificationFormatted = classification.charAt(0).toUpperCase() + classification.slice(1);
+    const nav = await utilities.getNav();
+    
     const inventory = await invModel.getVehiclesByClassification(classification);
-    const classification_name = classification.charAt(0).toUpperCase() + classification.slice(1);
+    console.log("Vehicles returned for classification:", classificationFormatted, inventory);
+
+    if (!inventory || inventory.length === 0) {
+      return res.status(404).render("inventory/inventory", {
+        title: classificationFormatted + " Vehicles",
+        nav,
+        classification_name: classificationFormatted,
+        inventory: [],
+        message: "No vehicles found for this classification.",
+      });
+    }
+
     res.render("inventory/inventory", {
-      title: classification_name + " Vehicles",
-      classification_name,
+      title: classificationFormatted + " Vehicles",
+      nav,
+      classification_name: classificationFormatted,
       inventory,
     });
   } catch (error) {
@@ -22,6 +37,7 @@ async function buildById(req, res, next) {
   try {
     const inv_id = req.params.inv_id;
     const vehicle = await invModel.getVehicleById(inv_id);
+    const nav = await utilities.getNav();
 
     if (!vehicle) {
       return res.status(404).send("Vehicle not found");
@@ -32,6 +48,7 @@ async function buildById(req, res, next) {
 
     res.render("inventory/detail", {
       title: vehicleName,
+      nav,
       vehicleName,
       detailHtml,
     });

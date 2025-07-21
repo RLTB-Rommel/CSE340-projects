@@ -13,6 +13,18 @@ function buildDetailView(vehicle) {
   `;
 }
 
+async function getNav() {
+  // Simple hardcoded nav for now (replace with DB version if needed)
+  return `
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/inventory/type/Custom">Custom</a></li>
+      <li><a href="/inventory/type/SUV">SUV</a></li>
+    </ul>
+  `;
+}
+
 module.exports = {
   buildDetailView,
+  getNav,
 };
