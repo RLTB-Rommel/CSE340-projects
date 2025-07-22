@@ -42,9 +42,9 @@ app.get("/test-db", async (req, res) => {
     });
 
     const result = await pool.query("SELECT NOW()");
-    res.send(`✅ Connected to DB! Server time: ${result.rows[0].now}`);
+    res.send(`Connected to DB! Server time: ${result.rows[0].now}`);
   } catch (err) {
-    console.error("❌ DB TEST ERROR:", err);
+    console.error("DB TEST ERROR:", err);
     res.status(500).send("Database connection failed: " + err.message);
   }
 });
