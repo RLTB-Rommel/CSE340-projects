@@ -311,14 +311,6 @@ footer {
   margin-top: 1rem;
 }
 
-.vehicle-container img,
-.vehicle-image img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
 .price {
   font-weight: bold;
   color: #333;
@@ -406,13 +398,6 @@ footer {
   font-weight: bold;
   transform: scaleX(1.2);
   transform-origin: center;
-  }
-
-  .vehicle-container {
-  display: flex;
-  flex-direction: column; /* Stack on mobile */
-  gap: 1rem;
-  padding: 1rem;
   }
 
     /*.vehicle-detail {

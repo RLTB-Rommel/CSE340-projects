@@ -5,7 +5,9 @@
     <section class="vehicle-grid">
       <% inventory.forEach(vehicle => { %>
         <div class="vehicle-card">
-          <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-thumb">
+          <a href="/inventory/detail/<%= vehicle.inv_id %>">
+            <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>" class="vehicle-thumb">
+          </a>
           <h2>
             <a href="/inventory/detail/<%= vehicle.inv_id %>">
               <%= vehicle.inv_make %> <%= vehicle.inv_model %>

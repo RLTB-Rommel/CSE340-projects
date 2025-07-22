@@ -1,8 +1,23 @@
-<%- include('../partials/header') %>
+<main class="wrapper vehicle-detail">
+  <!-- Vehicle Title -->
+  <h1><%= vehicle.inv_year %> <%= vehicle.inv_make %> <%= vehicle.inv_model %></h1>
 
-<main class="wrapper">
-  <h1><%= vehicleName %></h1>
-  <%- detailHtml %>
+  <section class="vehicle-layout">
+    <!-- Vehicle Image -->
+  <div class="vehicle-image">
+    <img src="<%= vehicle.inv_image %>" alt="Image of <%= vehicle.inv_make %> <%= vehicle.inv_model %>">
+  </div>
+
+    <!-- Vehicle Info -->
+    <div class="vehicle-info">
+      <h2><%= vehicle.inv_make %> <%= vehicle.inv_model %> Details</h2>
+
+      <p><strong>Price:</strong> $<%= Number(vehicle.inv_price).toLocaleString() %></p>
+      <p><strong>Description:</strong> 
+        <%= vehicle.inv_description || 'No description available.' %>
+      </p>
+      <p><strong>Color:</strong> <%= vehicle.inv_color || 'N/A' %></p>
+      <p><strong>Miles:</strong> <%= vehicle.inv_miles ? Number(vehicle.inv_miles).toLocaleString() : 'N/A' %></p>
+    </div>
+  </section>
 </main>
-
-<%- include('../partials/footer') %>

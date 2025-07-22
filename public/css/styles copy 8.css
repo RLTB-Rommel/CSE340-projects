@@ -280,51 +280,6 @@ footer {
   font-weight: bold;
 }
 
-.vehicle-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.vehicle-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 1rem;
-  background-color: #f9f9f9;
-  text-align: center;
-  transition: transform 0.2s ease;
-}
-
-.vehicle-card:hover {
-  transform: scale(1.02);
-}
-
-.vehicle-thumb {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-}
-
-.vehicle-card h2 {
-  font-size: 1.2rem;
-  margin-top: 1rem;
-}
-
-.vehicle-container img,
-.vehicle-image img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.price {
-  font-weight: bold;
-  color: #333;
-  margin-top: 0.5rem;
-}
-
 /* Responsive design */
 @media (max-width: 768px) {
   .bottom-section {
@@ -406,13 +361,6 @@ footer {
   font-weight: bold;
   transform: scaleX(1.2);
   transform-origin: center;
-  }
-
-  .vehicle-container {
-  display: flex;
-  flex-direction: column; /* Stack on mobile */
-  gap: 1rem;
-  padding: 1rem;
   }
 
     /*.vehicle-detail {
