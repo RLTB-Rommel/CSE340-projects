@@ -1,3 +1,6 @@
+// Load environment variables from .env or Render config
+require("dotenv").config();
+
 const express = require("express");
 const env = require("dotenv").config();
 const app = express();
