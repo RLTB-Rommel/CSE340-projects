@@ -42,6 +42,7 @@ app.get("/test-db", async (req, res) => {
       user: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
+      ssl: { rejectUnauthorized: false }
     });
 
     const result = await pool.query("SELECT NOW()");
