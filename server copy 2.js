@@ -20,10 +20,14 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+
 // TEMP: Simulate 500 error
 app.get("/error", (req, res) => {
   throw new Error("This is a simulated 500 server error");
 });
+
+
+
 
 /* ***********************
  * Routes
@@ -34,25 +38,14 @@ app.get('/', (req, res) => {
 app.use(static);
 app.use("/inventory", inventoryRoute);
 
-// ADD THIS TEST ROUTE HERE:
-app.get("/test-db", async (req, res) => {
-  try {
-    const { Pool } = require("pg");
-    const pool = new Pool({
-      host: process.env.PGHOST,
-      port: process.env.PGPORT || 5432,
-      user: process.env.PGUSER,
-      password: process.env.PGPASSWORD,
-      database: process.env.PGDATABASE
-    });
 
-    const result = await pool.query("SELECT NOW()");
-    res.send(`Connected to DB! Server time: ${result.rows[0].now}`);
-  } catch (err) {
-    console.error("DB TEST ERROR:", err);
-    res.status(500).send("Database connection failed: " + err.message);
-  }
-});
+
+
+
+
+
+
+
 
 /* ***********************
  * Error Handlers
