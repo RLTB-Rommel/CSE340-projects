@@ -20,21 +20,16 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// TEMP: Simulate 500 error
+/* ***********************
+ * TEMP Route: Simulated 500 error
+ *************************/
 app.get("/error", (req, res) => {
   throw new Error("This is a simulated 500 server error");
 });
 
 /* ***********************
- * Routes
+ * DB Test Route (for Render)
  *************************/
-app.get('/', (req, res) => {
-  res.render('index');
-});
-app.use(static);
-app.use("/inventory", inventoryRoute);
-
-// ADD THIS TEST ROUTE HERE:
 app.get("/test-db", async (req, res) => {
   try {
     const { Pool } = require("pg");
@@ -43,16 +38,25 @@ app.get("/test-db", async (req, res) => {
       port: process.env.PGPORT || 5432,
       user: process.env.PGUSER,
       password: process.env.PGPASSWORD,
-      database: process.env.PGDATABASE
+      database: process.env.PGDATABASE,
     });
 
     const result = await pool.query("SELECT NOW()");
-    res.send(`Connected to DB! Server time: ${result.rows[0].now}`);
+    res.send(`✅ Connected to DB! Server time: ${result.rows[0].now}`);
   } catch (err) {
-    console.error("DB TEST ERROR:", err);
+    console.error("❌ DB TEST ERROR:", err);
     res.status(500).send("Database connection failed: " + err.message);
   }
 });
+
+/* ***********************
+ * Routes
+ *************************/
+app.get("/", (req, res) => {
+  res.render("index");
+});
+app.use(static);
+app.use("/inventory", inventoryRoute);
 
 /* ***********************
  * Error Handlers
@@ -70,7 +74,7 @@ app.use((req, res) => {
  * Start Server
  *************************/
 const port = process.env.PORT || 3000;
-const host = process.env.HOST || 'localhost';
+const host = process.env.HOST || "localhost";
 
 app.listen(port, () => {
   console.log(`App listening on http://${host}:${port}`);
