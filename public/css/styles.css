@@ -485,6 +485,17 @@ button[type="submit"]:hover {
   font-size: 1.25rem;
 }
 
+.success {
+  border: 2px solid red;
+  border-radius: 50px;
+  padding: 10px 20px;
+  display: inline-block;
+  font-weight: bold;
+  color: #f60606;
+  background-color: #fff; /* optional */
+  margin-bottom: 1rem;
+}
+
 
 /* Responsive design */
 @media (max-width: 768px) {
