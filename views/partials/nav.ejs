@@ -1,10 +1,10 @@
 <nav class="main-nav">
   <ul class="nav-list">
     <li><a href="/">Home</a></li>
-    <li><a href="/inventory/type/Custom">Custom</a></li>
-    <li><a href="/inventory/type/Sedan">Sedan</a></li>
-    <li><a href="/inventory/type/Sports">Sports</a></li>
-    <li><a href="/inventory/type/SUV">SUV</a></li>
-    <li><a href="/inventory/type/Truck">Truck</a></li>
+    <% if (classificationList && classificationList.length > 0) { %>
+      <% classificationList.forEach(classification => { %>
+        <li><a href="/inventory/type/<%= classification.classification_name %>"><%= classification.classification_name %></a></li>
+      <% }) %>
+    <% } %>
   </ul>
 </nav>

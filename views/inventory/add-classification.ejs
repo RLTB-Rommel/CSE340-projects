@@ -1,0 +1,43 @@
+<body>
+  <div class="wrapper">
+
+    <main>
+      <h1>Add New Classification</h1>
+
+      <!-- All errors shown below the heading -->
+      <% if (errors && errors.length > 0) { %>
+        <div class="form-error-above">
+          <ul>
+            <% errors.forEach(function(error) { %>
+              <li><%= error %></li>
+            <% }); %>
+          </ul>
+        </div>
+      <% } %>
+
+      <div class="form-container">
+        <form method="POST" action="/inv/add-classification">
+          <div class="form-group">
+            <label for="classification_name">Classification Name</label>
+
+            <input
+              type="text"
+              id="classification_name"
+              name="classification_name"
+              required
+              pattern="[A-Za-z ]{3,}"
+              value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+            />
+            <p class="form-note">
+              <em>Name must be alphabetic characters only and at least 3 characters long.</em>
+            </p>
+          </div>
+
+          <button type="submit">Add Classification</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+</body>
+</html>
