@@ -1,0 +1,55 @@
+<div class="yellow-border">
+  <h1>Login</h1>
+
+  <% if (notice && notice.length > 0) { %>
+    <div class="flash-message"><%= notice %></div>
+  <% } %>
+
+  <div class="form-container login-box">
+    <form action="/account/login" method="post">
+      <div class="form-group">
+        <label for="account_email">Email Address:</label>
+        <input
+          type="email"
+          id="account_email"
+          name="account_email"
+          required
+          value="<%= typeof account_email !== 'undefined' ? account_email : '' %>"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="account_password">Password:</label>
+        <input
+          type="password"
+          id="account_password"
+          name="account_password"
+          required
+          minlength="12"
+          
+        />
+        <p class="form-note">
+          Passwords must be minimum of 12 characters and include 1 capital letter,
+          1 number and 1 special character.
+        </p>
+      </div>
+
+      <div class="form-group">
+        <button type="button" onclick="togglePassword()" class="show-btn">Show Password</button>
+      </div>
+
+      <div class="form-group">
+        <button type="submit" class="submit-btn">Login</button>
+      </div>
+
+      <p>No account? <a href="/account/register">Sign-up</a></p>
+    </form>
+  </div>
+</div>
+
+<script>
+  function togglePassword() {
+    const pw = document.getElementById("account_password");
+    pw.type = pw.type === "password" ? "text" : "password";
+  }
+</script>

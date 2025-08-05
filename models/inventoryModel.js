@@ -101,11 +101,38 @@ async function getClassificationByName(name) {
   return data.rows[0] || null;
 }
 
+/**
+ * Get inventory stats for Admin Dashboard:
+ * - Total number of vehicles
+ * - Total number of classifications
+ * @returns {Promise<Object>} Inventory counts
+ */
+async function getInventoryStats() {
+  try {
+    const sql1 = `SELECT COUNT(*) AS total FROM inventory;`;
+    const sql2 = `SELECT COUNT(*) AS total FROM classification;`;
+
+    const [invResult, classResult] = await Promise.all([
+      pool.query(sql1),
+      pool.query(sql2)
+    ]);
+
+    return {
+      totalInventory: parseInt(invResult.rows[0].total),
+      totalClassifications: parseInt(classResult.rows[0].total)
+    };
+  } catch (error) {
+    console.error("getInventoryStats error:", error);
+    return { totalInventory: 0, totalClassifications: 0 };
+  }
+}
+
 module.exports = {
   getVehiclesByClassification,
   getVehicleById,
   getClassifications,
   insertVehicle,
   addClassification,
-  getClassificationByName
+  getClassificationByName,
+  getInventoryStats
 };

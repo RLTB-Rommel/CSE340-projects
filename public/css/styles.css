@@ -496,6 +496,109 @@ button[type="submit"]:hover {
   margin-bottom: 1rem;
 }
 
+.role-badge {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 1rem;
+  border-radius: 9999px;
+  border: 2px solid;
+  font-weight: bold;
+}
+
+.badge.admin {
+  color: #a30000;
+  border-color: #a30000;
+}
+
+.badge.employee {
+  color: #004080;
+  border-color: #004080;
+}
+
+.badge.client {
+  color: #006400;
+  border-color: #006400;
+}
+
+.flash-message {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.4rem 1rem;
+  border: 2px solid #a30000;
+  color: #a30000;
+  background-color: #fff;
+  border-radius: 999px;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.welcome-banner,
+.flash-message {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid #a10000;
+  border-radius: 1rem;
+  color: #a10000;
+  font-weight: bold;
+  background-color: #fff;
+}
+
+.edit-form-container,
+.password-form-container {
+  background-color: #fff8e1;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 2rem auto;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-container label,
+.password-form-container label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #111;
+}
+
+.edit-form-container input,
+.password-form-container input {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  background-color: #8c0311;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+  color: #fff700;
+}
+
+.account-messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
 
 /* Responsive design */
 @media (max-width: 768px) {

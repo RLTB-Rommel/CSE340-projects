@@ -1,0 +1,58 @@
+<!-- Role Badge -->
+<div class="role-badge">
+  <% if (accountType === 'Admin') { %>
+    <span class="badge admin">Administrator</span>
+  <% } else if (accountType === 'Employee') { %>
+    <span class="badge employee">Employee</span>
+  <% } else { %>
+    <span class="badge client">Client</span>
+  <% } %>
+</div>
+
+<% if (accountType) { %>
+  <h1>Account Management</h1>
+
+  <!-- Stacked Messages -->
+      <div class="welcome-banner">
+      Welcome , <strong><%= accountFirstname %></strong>!
+    </div>
+    
+    <div class="account-messages">
+    <% if (notice && notice.length > 0) { %>
+      <div class="flash-message"><%= notice %></div>
+    <% } %>
+
+
+  </div>
+
+  <% if (accountType === 'Admin' || accountType === 'Employee') { %>
+    <section class="employee-tools">
+      <h2>Employee Tools</h2>
+      <ul>
+        <li><a href="/inv/add-classification">Add Classification</a></li>
+        <li><a href="/inv/add-inventory">Add Inventory</a></li>
+      </ul>
+    </section>
+  <% } %>
+
+  <% if (accountType === 'Admin' && accountStats && inventoryStats) { %>
+    <section class="admin-dashboard">
+      <h2>Admin Dashboard</h2>
+      <ul>
+        <% accountStats.forEach(stat => { %>
+          <li><strong><%= stat.account_type %>s:</strong> <%= stat.count %></li>
+        <% }) %>
+        <li><strong>Total Vehicles:</strong> <%= inventoryStats.totalInventory %></li>
+        <li><strong>Total Classifications:</strong> <%= inventoryStats.totalClassifications %></li>
+      </ul>
+    </section>
+  <% } %>
+
+  <section class="account-update">
+    <h2>Manage Your Account</h2>
+    <p><a href="/account/edit">Edit Account Information</a></p>
+  </section>
+<% } else { %>
+  <h1>Access Denied</h1>
+  <p>You do not have permission to view this page.</p>
+<% } %>

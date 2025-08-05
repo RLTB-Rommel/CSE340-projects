@@ -1,0 +1,41 @@
+<h1>Edit Account</h1>
+
+<div class="form-container">
+  <form action="/account/update" method="post">
+    <div class="form-group">
+      <label for="account_firstname">First Name</label>
+      <input type="text" id="account_firstname" name="account_firstname" value="<%= account.account_firstname %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="account_lastname">Last Name</label>
+      <input type="text" id="account_lastname" name="account_lastname" value="<%= account.account_lastname %>" required>
+    </div>
+
+    <div class="form-group">
+      <label for="account_email">Email</label>
+      <input type="text" id="account_email" name="account_email" value="<%= account.account_email %>" required>
+    </div>
+
+    <button class="form-submit" type="submit">Update Info</button>
+  </form>
+</div>
+
+<hr>
+
+<h2>Update Password</h2>
+
+<div class="form-container">
+  <form action="/account/change-password" method="post">
+    <div class="form-group">
+      <label for="new_password">New Password</label>
+      <input type="text" id="new_password" name="account_password" required>
+
+      <p class="form-note">
+        Passwords must be a minimum of 12 characters and include 1 capital letter, 1 number, and 1 special character.
+      </p>
+    </div>
+
+    <button class="form-submit" type="submit">Change Password</button>
+  </form>
+</div>

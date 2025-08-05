@@ -1,3 +1,8 @@
+const invModel = require("../models/inventoryModel");
+
+/**
+ * Building HTML for a vehicle detail view
+ */
 function buildDetailView(vehicle) {
   return `
     <div class="vehicle-detail">
@@ -13,18 +18,42 @@ function buildDetailView(vehicle) {
   `;
 }
 
+/**
+ * Middleware to protect routes behind login
+ */
+function checkLogin(req, res, next) {
+  if (req.session.loggedin) {
+    return next();
+  } else {
+    req.flash("notice", "Please log in.");
+    return res.redirect("/account/login");
+  }
+}
+
+/**
+ * Building dynamic navigation bar from classifications
+ */
 async function getNav() {
-  // Simple hardcoded nav for now (replace with DB version if needed)
-  return `
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/inventory/type/Custom">Custom</a></li>
-      <li><a href="/inventory/type/SUV">SUV</a></li>
-    </ul>
-  `;
+  try {
+    const data = await invModel.getClassifications();
+
+    let nav = '<ul>';
+    nav += `<li><a href="/">Home</a></li>`;
+
+    data.forEach((row) => {
+      nav += `<li><a href="/inventory/type/${row.classification_name}">${row.classification_name}</a></li>`;
+    });
+
+    nav += '</ul>';
+    return nav;
+  } catch (error) {
+    console.error("Error building navigation:", error);
+    return '<ul><li><a href="/">Home</a></li></ul>'; // fallback
+  }
 }
 
 module.exports = {
   buildDetailView,
   getNav,
+  checkLogin,
 };

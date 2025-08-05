@@ -4,15 +4,16 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const session = require("express-session");
-const flash = require("express-flash");
+const flash = require("connect-flash");
 const expressEjsLayouts = require("express-ejs-layouts");
 
 // Routes
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoute");
+const accountRoute = require("./routes/accountRoute");
 
 // Models
-const invModel = require("./models/inventoryModel"); // Required for loading classification list
+const invModel = require("./models/inventoryModel");
 
 /* ***********************
  * View Engine and Layouts
@@ -20,7 +21,7 @@ const invModel = require("./models/inventoryModel"); // Required for loading cla
 app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(expressEjsLayouts);
-app.set("layout", "./layouts/layout");
+app.set("layout", "./layouts/layout"); // default layout file
 
 /* ***********************
  * Middleware
@@ -33,11 +34,24 @@ app.use(session({
   secret: process.env.SESSION_SECRET || "supersecret",
   resave: false,
   saveUninitialized: true,
+  cookie: {
+    secure: false,
+    maxAge: 1000 * 60 * 60,
+  },
 }));
+
 app.use(flash());
 
+app.use((req, res, next) => {
+  res.locals.loggedin = req.session.loggedin;
+  res.locals.firstname = req.session.accountFirstname;
+  res.locals.accountType = req.session.accountType;
+  res.locals.notice = req.flash("notice");
+  next();
+});
+
 /* ***********************
- * Dynamic Navbar Classifications Middleware
+ * Load Classifications for Navbar
  *************************/
 app.use(async (req, res, next) => {
   try {
@@ -51,15 +65,12 @@ app.use(async (req, res, next) => {
 });
 
 /* ***********************
- * TEMP Route: Simulated 500 Error
+ * Test Routes
  *************************/
 app.get("/error", (req, res) => {
   throw new Error("This is a simulated 500 server error");
 });
 
-/* ***********************
- * DB Test Route (for Render)
- *************************/
 app.get("/test-db", async (req, res) => {
   try {
     const { Pool } = require("pg");
@@ -69,7 +80,7 @@ app.get("/test-db", async (req, res) => {
       user: process.env.PGUSER,
       password: process.env.PGPASSWORD,
       database: process.env.PGDATABASE,
-      ssl: { rejectUnauthorized: false }
+      ssl: { rejectUnauthorized: false },
     });
 
     const result = await pool.query("SELECT NOW()");
@@ -81,14 +92,15 @@ app.get("/test-db", async (req, res) => {
 });
 
 /* ***********************
- * Routes
+ * Main Routes
  *************************/
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
 app.use(static);
-app.use("/inventory", inventoryRoute); // Optional route prefix
-app.use("/inv", inventoryRoute); // Required for validation assignment
+app.use("/inventory", inventoryRoute);
+app.use("/inv", inventoryRoute);
+app.use("/account", accountRoute);
 
 /* ***********************
  * Error Handlers
@@ -109,5 +121,5 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
 
 app.listen(port, () => {
-  console.log(`App listening on http://${host}:${port}`);
+  console.log(`CSE Motors listening on http://${host}:${port}`);
 });
