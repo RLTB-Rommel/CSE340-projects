@@ -25,7 +25,7 @@ function checkLogin(req, res, next) {
   if (req.session.loggedin) {
     return next();
   } else {
-    req.flash("notice", "Please log in.");
+    req.flash("notice", "Please log in to continue.");
     return res.redirect("/account/login");
   }
 }
@@ -55,5 +55,5 @@ async function getNav() {
 module.exports = {
   buildDetailView,
   getNav,
-  checkLogin,
+  checkLogin
 };
