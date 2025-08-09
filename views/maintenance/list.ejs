@@ -1,0 +1,82 @@
+<h1>Maintenance Schedule</h1>
+
+<div class="maint-panel">
+  <div class="form-section">
+    <a class="btn-primary" href="/maintenance/create">+ New</a>
+  </div>
+
+  <!-- NEW: two-tone wrapper + grid classes -->
+  <div class="filter-card">
+    <form method="get" action="/maintenance" class="filter-form">
+      <div class="filter-grid">
+        <label for="status">Status</label>
+        <select id="status" name="status">
+          <option value="">All Status</option>
+          <option value="Scheduled" <%= filters.status==='Scheduled' ? 'selected' : '' %>>Scheduled</option>
+          <option value="Completed" <%= filters.status==='Completed' ? 'selected' : '' %>>Completed</option>
+          <option value="Cancelled" <%= filters.status==='Cancelled' ? 'selected' : '' %>>Cancelled</option>
+        </select>
+
+        <label for="from">From</label>
+        <input type="date" id="from" name="from" value="<%= filters.from || '' %>">
+
+        <label for="to">To</label>
+        <input type="date" id="to" name="to" value="<%= filters.to || '' %>">
+
+        <label for="search">Search</label>
+        <input type="text" id="search" name="q" placeholder="Client, make, model, plate" value="<%= filters.q || '' %>">
+
+        <div class="full filter-actions">
+          <button type="submit" class="btn-primary">Filter</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="table-responsive">
+    <table class="maint-table">
+      <thead>
+        <tr>
+          <th>Due Date</th>
+          <th>Client</th>
+          <th>Vehicle</th>
+          <th>Task</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if (schedules.length === 0) { %>
+          <tr>
+            <td colspan="6" style="text-align:center;">No schedules found. Try adjusting filters or <a href="/maintenance/create">add new</a>.</td>
+          </tr>
+        <% } else { %>
+          <% schedules.forEach(s => { %>
+            <tr>
+              <td data-label="Due Date"><%= s.due_date.toISOString ? s.due_date.toISOString().slice(0,10) : s.due_date %></td>
+              <td data-label="Client">
+                <strong><%= s.customer_name %></strong><br>
+                <%= s.customer_contact || '' %>
+              </td>
+              <td data-label="Vehicle">
+                <%= s.vehicle_make %> <%= s.vehicle_model %>
+                <% if (s.plate_no) { %> (<%= s.plate_no %>) <% } %><br>
+                <% if (s.odometer_km) { %>Odo: <%= s.odometer_km %> km<% } %>
+              </td>
+              <td data-label="Task"><%= s.task_name %></td>
+              <td data-label="Status">
+                <span class="badge <%= (s.status || '').toLowerCase() %>"><%= s.status %></span>
+              </td>
+              <td data-label="Actions" class="actions">
+                <a href="/maintenance/<%= s.ms_id %>/edit" class="btn-primary small">Edit</a>
+                <form method="post" action="/maintenance/<%= s.ms_id %>/delete" style="display:inline;" onsubmit="return confirm('Delete this schedule?');">
+                  <button type="submit" class="btn-danger small">Delete</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</div>

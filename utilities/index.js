@@ -22,12 +22,30 @@ function buildDetailView(vehicle) {
  * Middleware to protect routes behind login
  */
 function checkLogin(req, res, next) {
-  if (req.session.loggedin) {
+  if (req.session.loggedin) return next();
+  req.flash("notice", "Please log in to continue.");
+  return res.redirect("/account/login");
+}
+
+/**
+ * Role guard: only Admin/Employee may proceed
+ * (Your session stores role at req.session.accountType)
+ */
+function checkAdminOrEmployee(req, res, next) {
+  const role =
+    req.session?.accountType ??
+    req.session?.account_type ?? // fallback if you later rename
+    null;
+
+  if (role === "Admin" || role === "Administrator" || role === "Employee") {
     return next();
-  } else {
-    req.flash("notice", "Please log in to continue.");
-    return res.redirect("/account/login");
   }
+
+  req.flash("notice", "You do not have permission to access this page.");
+  return res.status(403).render("errors/403", {
+    title: "403 – Forbidden",
+    message: "Only Admin and Employee accounts can access Maintenance.",
+  });
 }
 
 /**
@@ -37,14 +55,12 @@ async function getNav() {
   try {
     const data = await invModel.getClassifications();
 
-    let nav = '<ul>';
+    let nav = "<ul>";
     nav += `<li><a href="/">Home</a></li>`;
-
     data.forEach((row) => {
       nav += `<li><a href="/inventory/type/${row.classification_name}">${row.classification_name}</a></li>`;
     });
-
-    nav += '</ul>';
+    nav += "</ul>";
     return nav;
   } catch (error) {
     console.error("Error building navigation:", error);
@@ -55,5 +71,6 @@ async function getNav() {
 module.exports = {
   buildDetailView,
   getNav,
-  checkLogin
+  checkLogin,
+  checkAdminOrEmployee, // <-- export the new guard
 };

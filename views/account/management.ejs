@@ -13,22 +13,21 @@
   <h1>Account Management</h1>
 
   <!-- Stacked Messages -->
-      <div class="welcome-banner">
-      Welcome , <strong><%= accountFirstname %></strong>!
-    </div>
-    
-    <div class="account-messages">
+  <div class="welcome-banner">
+    Welcome , <strong><%= accountFirstname %></strong>!
+  </div>
+  
+  <div class="account-messages">
     <% if (notice && notice.length > 0) { %>
       <div class="flash-message"><%= notice %></div>
     <% } %>
-
-
   </div>
 
   <% if (accountType === 'Admin' || accountType === 'Employee') { %>
     <section class="employee-tools">
       <h2>Employee Tools</h2>
       <ul>
+        <li><a href="/maintenance">Maintenance Schedule</a></li>
         <li><a href="/inv/add-classification">Add Classification</a></li>
         <li><a href="/inv/add-inventory">Add Inventory</a></li>
       </ul>

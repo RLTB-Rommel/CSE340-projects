@@ -1,4 +1,3 @@
-// Load environment variables from .env or Render config
 require("dotenv").config();
 
 const express = require("express");
@@ -11,6 +10,7 @@ const expressEjsLayouts = require("express-ejs-layouts");
 const static = require("./routes/static");
 const inventoryRoute = require("./routes/inventoryRoute");
 const accountRoute = require("./routes/accountRoute");
+const maintenanceRoute = require("./routes/maintenanceRoute"); // <- NEW
 
 // Models
 const invModel = require("./models/inventoryModel");
@@ -30,18 +30,28 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(session({
-  secret: process.env.SESSION_SECRET || "supersecret",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    secure: false,
-    maxAge: 1000 * 60 * 60,
-  },
-}));
+// Trust proxy for platforms like Render so secure cookies work when proxied over HTTPS
+app.set("trust proxy", 1);
+
+const isProd = process.env.NODE_ENV === "production";
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "supersecret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      secure: isProd,            // only set secure cookies in production
+      httpOnly: true,            // mitigate XSS
+      sameSite: isProd ? "none" : "lax", // allow cross-site cookies when proxied (Render)
+      maxAge: 1000 * 60 * 60,    // 1 hour
+    },
+  })
+);
 
 app.use(flash());
 
+// Expose common session data to all views
 app.use((req, res, next) => {
   res.locals.loggedin = req.session.loggedin;
   res.locals.firstname = req.session.accountFirstname;
@@ -56,11 +66,12 @@ app.use((req, res, next) => {
 app.use(async (req, res, next) => {
   try {
     const data = await invModel.getClassifications();
-    res.locals.classificationList = data;
+    res.locals.classificationList = data || [];
     next();
   } catch (error) {
     console.error("Error loading classification list:", error);
-    next(error);
+    res.locals.classificationList = []; // fail gracefully so layout still renders
+    next();
   }
 });
 
@@ -97,10 +108,12 @@ app.get("/test-db", async (req, res) => {
 app.get("/", (req, res) => {
   res.render("index", { title: "Home" });
 });
+
 app.use(static);
 app.use("/inventory", inventoryRoute);
-app.use("/inv", inventoryRoute);
+app.use("/inv", inventoryRoute); // legacy alias if you still use /inv links
 app.use("/account", accountRoute);
+app.use("/maintenance", maintenanceRoute); // <- NEW
 
 /* ***********************
  * Error Handlers

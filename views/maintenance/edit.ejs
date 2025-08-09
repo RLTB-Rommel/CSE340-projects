@@ -1,0 +1,86 @@
+<div class="wrapper maint-wrapper">
+  <h1>Edit Maintenance Schedule</h1>
+
+  <!-- Center the gray panel and make it hug the form -->
+  <div class="maint-panel-container" style="text-align:center;">
+    <div class="maint-panel" style="display:inline-block;">
+      <div class="form-box"><!-- beige inner card -->
+
+        <% if (errors && errors.length) { %>
+          <div class="form-error-above" role="alert">
+            <ul>
+              <% errors.forEach(e => { %>
+                <li><%= e %></li>
+              <% }) %>
+            </ul>
+          </div>
+        <% } %>
+
+        <form class="form" method="post" action="/maintenance/<%= data.ms_id %>/edit" novalidate>
+          <input type="hidden" name="ms_id" value="<%= data.ms_id %>">
+
+          <fieldset class="form-group">
+            <legend>Client</legend>
+            <label>Customer Name* 
+              <input name="customer_name" required value="<%= data.customer_name || '' %>">
+            </label>
+            <label>Contact 
+              <input name="customer_contact" value="<%= data.customer_contact || '' %>">
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Vehicle</legend>
+            <label>Make* 
+              <input name="vehicle_make" required value="<%= data.vehicle_make || '' %>">
+            </label>
+            <label>Model* 
+              <input name="vehicle_model" required value="<%= data.vehicle_model || '' %>">
+            </label>
+            <label>Plate 
+              <input name="plate_no" value="<%= data.plate_no || '' %>">
+            </label>
+            <label>Odometer (km) 
+              <input type="number" min="0" name="odometer_km" value="<%= data.odometer_km || '' %>">
+            </label>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend>Maintenance</legend>
+            <label>Task*
+              <select name="task_id" required>
+                <% (tasks || []).forEach(t => { %>
+                  <option value="<%= t.task_id %>" <%= String(data.task_id)===String(t.task_id) ? 'selected' : '' %>>
+                    <%= t.name %>
+                  </option>
+                <% }) %>
+              </select>
+            </label>
+
+            <label>Due Date* 
+              <input type="date" name="due_date" required value="<%= data.due_date || '' %>">
+            </label>
+
+            <label>Status*
+              <select name="status" required>
+                <option value="Scheduled" <%= data.status==='Scheduled' ? 'selected' : '' %>>Scheduled</option>
+                <option value="Completed" <%= data.status==='Completed' ? 'selected' : '' %>>Completed</option>
+                <option value="Cancelled" <%= data.status==='Cancelled' ? 'selected' : '' %>>Cancelled</option>
+              </select>
+            </label>
+
+            <label>Notes 
+              <textarea name="notes"><%= data.notes || '' %></textarea>
+            </label>
+          </fieldset>
+
+          <div class="form-actions" style="margin-top:.5rem;">
+            <button class="btn-primary" type="submit">Save</button>
+            <a class="btn-primary" href="/maintenance" style="background:#fff;color:#8c0311;border:1px solid #8c0311;display:inline-block;text-align:center;">Cancel</a>
+          </div>
+        </form>
+
+      </div><!-- /.form-box -->
+    </div><!-- /.maint-panel -->
+  </div><!-- /.maint-panel-container -->
+</div><!-- /.wrapper.maint-wrapper -->
